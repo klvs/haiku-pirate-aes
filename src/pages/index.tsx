@@ -51,10 +51,6 @@ const Home: NextPage = () => {
         <Text color="dimmed">
           Encode and decode verses
         </Text>
-
-        <Text mt="4rem" color="dimmed">
-          Powered by
-        </Text>
         {/* <Group mt="sm">
           <Tooltip label="NextJS" position="bottom-start">
             <Image

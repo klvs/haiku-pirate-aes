@@ -93,7 +93,7 @@ export const Navbar = (props: INavbarProps) => {
         <nav>
           <NextLink href="/" passHref>
             <Anchor className={classes.logo} underline={false}>
-              Haiku Pirate >_
+              Haiku Pirate: Engima
             </Anchor>
           </NextLink>
           <ul className={classes.list}>

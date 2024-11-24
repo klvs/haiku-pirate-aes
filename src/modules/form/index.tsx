@@ -44,15 +44,17 @@ const toBytes = (text) => {
 }
 
 const keyFromFormData = (d) => {
-    const plugboard = d.PLUGBOARD.split(' ').join('')
-    let protoKey = `${numeralMap[d.ROTOR1]}${numeralMap[d.ROTOR2]}${numeralMap[d.ROTOR3]}${d.POSITION1}${d.POSITION2}${d.POSITION3}${d.RING1}${d.RING2}${d.RING3}${plugboard}===`;
-
-    console.log(protoKey)
-
+    let plugboard = d.PLUGBOARD.split(' ').join('').split('')
+    console.log(plugboard, plugboard.length);
+    // pad plugboard to 20 chars
+    while(plugboard.length < 20) {
+        plugboard.push('=')
+    }
+    plugboard = plugboard.join('');
+    console.log(plugboard, plugboard.length);
+    let protoKey = `${numeralMap[d.ROTOR1]}${numeralMap[d.ROTOR2]}${numeralMap[d.ROTOR3]}${d.POSITION1}${d.POSITION2}${d.POSITION3}${d.RING1}${d.RING2}${d.RING3}${plugboard}===`; // pad last 3
     const textBytes = toBytes(protoKey);
-
     return textBytes;
-    // aesjs.utils.utf8.toBytes
 }
 
 const encryptAES = (key, plaintext) => {
