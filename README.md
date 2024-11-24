@@ -1,60 +1,29 @@
-# nextjs-mantine-template
+# Haiku Pirate AES
 
-[![image](https://user-images.githubusercontent.com/82776299/198222381-1c90bd7e-2f1a-4d74-b8dc-0a017a5102a6.png)](https://nextjs-mantine-template.deploy.cnoside.dev)
+**THIS IS MEANT FOR A GAME. IF YOU AREN'T PLAYING THE GAME, YOU PROBABLY SHOULDN'T USE THIS**
 
-This is a fully-featured full-stack [Next.js](https://nextjs.org/) template, built with [Mantine UI](https://mantine.dev/) and [Typescript](https://www.typescriptlang.org/).
+This is an AES text encrypter that maintains the interface of the Enigma Machine from crytpii.com.
 
-## Whats Included
+It turns out that using Engima for clues in a game is pretty easy to crack. So I rewrote the same interface but using 256-bit AES instead.
 
-### 📦 Libraries, Tools, and Frameworks
+No, the irony of re-writing old, broken crypto to use modern, good crypto but look like the old, broken crypto is not lost on me.
 
-- ⚛ Libraries<br /> `react-hook-form`, `react-query`, `axios`, `next-seo`, `yup`
-- 🔧 Tools<br/>`commitlint`, `husky`, `eslint`, `prettier`
-- 📦 Frameworks<br/>`next`, `mantine-ui`, `next-i18next`
+### How it works
 
-### 🏗 Next.js Layouts
+It simply contructs a 32 character AES key out of the enigma settings. **Yes, there are caveats of doing this that make the key a bit weaker.** 
 
-Next.js [Layouts](https://nextjs.org/docs/basic-features/layouts) are a great way to apply a consistent structure to your pages.
+Example: take the default Enigma settings from cryptii.com (we use the same defaults)
 
-Page-specific layouts can be rendered by providing the `getLayout` function.
+Your resulting key will be `613AQLAAABQCRDIEJKWMTOSPXUZGH===`
 
-### 😎 Smart Form Components
+First three characters are the Enigma Rotor numbers (1-8), the next 6 are the rotor settings (A-Z), the next 20 are the plugboard pairings. The final 3 characters are padding. 
 
-React Hook Form is used to create [Smart Form Components](https://react-hook-form.com/advanced-usage/#SmartFormComponent).
+`613 AQLAAA BQCRDIEJKWMTOSPXUZGH ===`
 
-### 🔒 Server-Side Authentication
+If your plug board is less than 20 characters, the remaining characters will be **padding**. **This means a less secure key.**
 
-Server-side authentication is implemented using Next.JS data fetching methods. Authenticated sessions are stored using [React Context](https://reactjs.org/docs/context.html).
+Example: random rotor settings with no plugboard:
 
-### 💪 GitHub Actions
+`112ABXDRE=======================`
 
-GitHub Actions with CI/CD workflows are included.
-
-## Prerequisites
-
-- [pnpm](https://pnpm.io/)
-- [Node.js](https://nodejs.org/en/) (^v14.16.
-
-## Getting Started
-
-1. Use the template
-
-You can either click the `Use this template` button or use [degit](https://github.com/Rich-Harris/degit).
-
-```bash
-pnpm dlx degit cnoside/nextjs-mantine-template my-app
-```
-
-2. Install dependencies
-
-```bash
-pnpm install
-```
-
-3. Start the development server
-
-```bash
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+That's only 9 characters of entropy! Not exactly bulletproof crypto, but hard to brute force. 
