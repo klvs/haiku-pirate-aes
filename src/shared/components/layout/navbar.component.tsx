@@ -93,7 +93,7 @@ export const Navbar = (props: INavbarProps) => {
         <nav>
           <NextLink href="/" passHref>
             <Anchor className={classes.logo} underline={false}>
-              nextjs-mantine-template
+              Haiku Pirate >_
             </Anchor>
           </NextLink>
           <ul className={classes.list}>
@@ -121,7 +121,7 @@ export const Navbar = (props: INavbarProps) => {
           </ul>
         </nav>
         <Group>
-          <ToggleDark />
+          {/* <ToggleDark /> */}
           {session.status === 'authenticated' && (
             <ActionIcon
               onClick={handleLogout}

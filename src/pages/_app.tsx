@@ -48,9 +48,9 @@ function App(props: AppPropsWithLayout) {
     Component.getLayout ??
     ((page) => (
       <Layout
-        navbar={{
-          links: Object.values(appRoutes)
-        }}
+        // navbar={{
+        //   links: Object.values(appRoutes)
+        // }}
       >
         {page}
       </Layout>

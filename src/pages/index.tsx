@@ -15,7 +15,7 @@ import { NextPage } from 'next';
 import NextLink from 'next/link';
 import { NextSeo } from 'next-seo';
 import { BadgeLink } from 'shared/components';
-
+import { Form } from 'modules/form'
 const useStyles = createStyles((theme) => {
   return {
     container: {
@@ -43,19 +43,19 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <NextSeo title="Home" />
+      {/* <NextSeo title="Home" /> */}
       <Container className={classes.container} size="sm">
         <Title order={1} size="2.5rem" align="center">
-          nextjs-mantine-template
+          Haiku Pirate
         </Title>
         <Text color="dimmed">
-          Get started by editing <Code>pages/index.tsx</Code>
+          Encode and decode verses
         </Text>
 
         <Text mt="4rem" color="dimmed">
           Powered by
         </Text>
-        <Group mt="sm">
+        {/* <Group mt="sm">
           <Tooltip label="NextJS" position="bottom-start">
             <Image
               src={`/nextjs-${colorScheme}-logo.svg`}
@@ -69,9 +69,9 @@ const Home: NextPage = () => {
           <Tooltip label="Typescript" position="bottom-start">
             <Image src="/typescript-logo.svg" alt="Typescript" width={28} />
           </Tooltip>
-        </Group>
-
-        <Group mt="lg" className={classes.badgeLinkContainer}>
+        </Group> */}
+        <Form/>
+        {/* <Group mt="lg" className={classes.badgeLinkContainer}>
           <BadgeLink label="commitlint" href="https://commitlint.js.org" />
           <BadgeLink
             label="next-seo"
@@ -106,7 +106,7 @@ const Home: NextPage = () => {
           >
             Open in Github
           </Button>
-        </Group>
+        </Group> */}
       </Container>
     </>
   );
