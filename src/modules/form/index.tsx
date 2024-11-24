@@ -45,13 +45,11 @@ const toBytes = (text) => {
 
 const keyFromFormData = (d) => {
     let plugboard = d.PLUGBOARD.split(' ').join('').split('')
-    console.log(plugboard, plugboard.length);
     // pad plugboard to 20 chars
     while(plugboard.length < 20) {
         plugboard.push('=')
     }
     plugboard = plugboard.join('');
-    console.log(plugboard, plugboard.length);
     let protoKey = `${numeralMap[d.ROTOR1]}${numeralMap[d.ROTOR2]}${numeralMap[d.ROTOR3]}${d.POSITION1}${d.POSITION2}${d.POSITION3}${d.RING1}${d.RING2}${d.RING3}${plugboard}===`; // pad last 3
     const textBytes = toBytes(protoKey);
     return textBytes;
@@ -67,8 +65,10 @@ const encryptAES = (key, plaintext) => {
 
 
 const decryptAES = (key, ciphertext) => {
+
     const hexBytes = aesjs.utils.hex.toBytes(ciphertext);
     const aesCtr1 = new aesjs.ModeOfOperation.ctr(key, new aesjs.Counter(5));
+    console.log(hexBytes)
     const decryptedBytes = aesCtr1.decrypt(hexBytes);
  
     // Convert our bytes back into text
@@ -135,6 +135,7 @@ export function Form() {
     <Textarea
       label="Text: "
         ref={ref}
+        key={form.key("TEXT")} {...form.getInputProps('TEXT')}
       placeholder="Paste your ciphertext or plaintext here"
     />
     {!resultText ? null :
